@@ -1,27 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package fatorial;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Fatorial {
 
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+        String input = JOptionPane.showInputDialog("Digite um número inteiro não negativo:");
 
-        System.out.print("Digite um número inteiro não negativo: ");
-        int n = teclado.nextInt();
+        if (input != null) {
+            int n;
 
-        if (n < 0) {
-            System.out.println("Fatorial não é definido para números negativos.");
+            try {
+                n = Integer.parseInt(input);
+
+                if (n < 0) {
+                    JOptionPane.showMessageDialog(null, "Fatorial não é definido para números negativos.");
+                } else {
+                    long resultado = fatorial(n);
+                    JOptionPane.showMessageDialog(null, "Fatorial de " + n + " é " + resultado);
+                }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Entrada inválida! Digite um número inteiro.");
+            }
         } else {
-            long resultado = fatorial(n);
-            System.out.println("Fatorial de " + n + " é " + resultado);
+            JOptionPane.showMessageDialog(null, "Operação cancelada.");
         }
-
-        teclado.close();
     }
 
     public static long fatorial(int n) {
@@ -34,4 +38,3 @@ public class Fatorial {
         return resultado;
     }
 }
-    
